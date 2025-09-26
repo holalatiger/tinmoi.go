@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Thiết lập biến môi trường để tránh lỗi ký GPG
+export GPG_TTY=$(tty)
+
 # Kiểm tra tham số message commit
 if [ -z "$1" ]; then
     echo "Vui lòng nhập message commit."
@@ -12,7 +15,8 @@ git add .
 # Commit có ký GPG với message truyền vào
 git commit -S -m "$1"
 
-# Đẩy lên nhánh hiện tại (main hoặc master)
+# Lấy tên nhánh hiện tại
 branch=$(git rev-parse --abbrev-ref HEAD)
-git push origin "$branch"
 
+# Đẩy lên nhánh hiện tại
+git push origin "$branch"
