@@ -9,8 +9,16 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
+# Hiển thị trạng thái trước khi add
+echo "Trạng thái trước khi add:"
+git status
+
 # Thêm tất cả thay đổi
 git add .
+
+# Hiển thị trạng thái sau khi add
+echo "Trạng thái sau khi add:"
+git status
 
 # Commit có ký GPG với message truyền vào
 git commit -S -m "$1"
